@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block header %}
+    <h1>
+        Welcome
+    </h1>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <form action="/" method="POST">
+            <input type="text" name="search" placeholder="Search">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+{% endblock %}

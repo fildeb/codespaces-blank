@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+     <form action="/sell" method="POST">
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <label for="stocks">Select a stock:</label>
+            <select name="symbol" id="symbol">
+                {% for row in companies %}
+                    <option value="{{ row['company_name'] }}">{{ row["company_name"] }}</option>
+                {% endfor %}
+            </select>
+            <div>
+                <input autocomplete="off" class="form-control mx-auto w-auto" min="0" name="shares" placeholder="Shares" type="number">
+            </div>
+            <button class="btn btn-success" name="buybutton" type="submit" style="margin-left: 10px;">Sell now</button>
+        </div>
+    </form>
+{% endblock %}

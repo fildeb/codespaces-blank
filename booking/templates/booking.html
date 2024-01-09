@@ -1,0 +1,173 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Booking
+{% endblock %}
+
+{% block main %}
+<script>
+    $(document).ready(function() {
+    // Add click event for each date cell
+        $("#cal td").on("click", function() {
+        // Get the text content of the clicked date cell
+            var clickedDate = $(this).data("date");
+
+        // Make an AJAX request to send the selected date to the server
+            $.ajax({
+                type: "POST",
+                url: "/booking",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    selectedDate: clickedDate
+                }),
+                success: function(response) {
+                // Handle the server response if needed
+                    console.log(response);
+                },
+                error: function(error) {
+                // Handle errors if needed
+                    console.error(error);
+                }
+            });
+        });
+        $("#cal td").hover(
+            function() {
+                $(this).addClass("hover");
+            },
+            function() {
+                $(this).removeClass("hover");
+            }
+        );
+    });
+</script>
+
+    <div class="title" id="selectaday">
+        Select a day
+    </div>
+    <div class="center">
+        <div class="calendar" id="cal">
+            {{ cal|safe }}
+        </div>
+        <form id="bookingForm" action="/select-time" , method="POST">
+            <div class="timetable">
+                <table id="bookingtime" class="table-hover" name="time">
+                    <thead>
+                        <tr>
+                            <th>Select a time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button id="earlybutton" onclick="sendTime('1300-1500')">1300-1500</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button id="earlydaybutton" onclick="sendTime('1500-1700')">1500-1700</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button id="latedaybutton" onclick="sendTime('1700-1900')">1700-1900</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button id="latebutton" onclick="sendTime('1900-2100')">1900-2100</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+    <form action="/make-reservation" method="POST">
+        <div class="center">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="name" name="name" placeholder="Name" type="text">
+            <br>
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="phone" name="phone" placeholder="Phone Number" type="tel" oninput="this.value = this.value.replace(/[^0-9]/g,'')">
+            <br>
+            <button id="submitbutton" name="submitbutton" type="submit" role="button">Make a reservation</button>
+        </div>
+    </form>
+
+    <script>
+    // Function for hiding elements by ID
+        function hideElementsById(idsToHide) {
+            idsToHide.forEach(function(id) {
+                var element = document.getElementById(id);
+                if (element) {
+                    element.style.display = "none";
+                }
+            });
+        }
+
+    // Function for showing elements by ID
+        function showElementsById(idsToShow) {
+            idsToShow.forEach(function(id) {
+                var element = document.getElementById(id);
+                if (element) {
+                    element.style.display = "block";
+                }
+            });
+        }
+
+    // Define a function to hide elements by ID
+        function hideElementsById(idsToHide) {
+        // Loop through the array of IDs and hide each element
+            idsToHide.forEach(function(id) {
+                var element = document.getElementById(id);
+                if (element) {
+                    element.style.display = "none";
+                }
+            });
+        }
+
+        var idsToHide = ["bookingtime", "name", "phone", "submitbutton", "earlybutton", "earlydaybutton", "latedaybutton", "latebutton"];
+        hideElementsById(idsToHide)
+
+        document.querySelector("[id='cal']").onclick = function() {
+            var idsToHide = ["cal", "selectaday"];
+            hideElementsById(idsToHide);
+
+        // Show the selected time buttons
+            var select_time = ["bookingtime", "earlybutton", "earlydaybutton", "latedaybutton", "latebutton"]
+            showElementsById(select_time);
+        }
+
+    // Function for storing what time the client clicks
+        function sendTime(selectedTime) {
+            console.log("Selected time:", selectedTime);
+        // Make an AJAX request to send the selectedTime to the server
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/select-time", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+        // Send the data as JSON
+            xhr.send(JSON.stringify({
+                selectedTime: selectedTime
+            }));
+
+        // Handle the response if needed
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log("Request successful");
+                } else {
+                    console.error("Request failed");
+                }
+            };
+
+        // Prevent the default form submission behavior
+            event.preventDefault();
+
+        // Hide the time buttons
+            var timeButtonIds = ["bookingtime", "earlybutton", "earlydaybutton", "latedaybutton", "latebutton"];
+            hideElementsById(timeButtonIds);
+
+        // Show the form elements
+            var formElementIds = ["name", "phone", "submitbutton"];
+            showElementsById(formElementIds);
+        }
+    </script>
+{% endblock %}

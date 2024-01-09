@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+     <div>
+        <h1 class="display-6">Welcome back, {{ username }}!</h1>
+            <div>
+                <h4>
+                    <br>My portfolio:<br><br><br>
+                </h4>
+                <table class="table table-hover">
+                    <tr>
+                        <th>Company</th>
+                        <th>Shares</th>
+                        <th>Total</th>
+                    </tr>
+                    <!-- TODO: Loop through the database entries to display them in this table -->
+                    {% for row in stockdata %}
+                    <tr>
+                        <td>{{ row["company_name"] }}</td>
+                        <td>{{ row["SUM(shares)"] }}</td>
+                        <td>${{ row["SUM(total)"]|round(2) }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td> </td>
+                        <th class="text-right">Cash</th>
+                        <td class="text-right">${{ cash|round(2) }}</td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <th class="text-right">TOTAL</th>
+                        <td class="text-right">${{ total|round(2) }}</td>
+                    </tr>
+                <table>
+            </div>
+     </div>
+{% endblock %}

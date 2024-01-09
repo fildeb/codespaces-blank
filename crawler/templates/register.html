@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block header %}
+    <h1>
+        Register a new account
+    </h1>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <form action="/register" method="POST">
+            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="pw" placeholder="Password">
+            <input type="text" name="confirmpw" placeholder="Repeat password">
+            <input type="submit" value="Register!">
+        </form>
+    </div>
+{% endblock %}

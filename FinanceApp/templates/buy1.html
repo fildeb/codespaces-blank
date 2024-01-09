@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+     <tr>
+        <td>Company: {{ stockinfo.name }}</td>
+        <br>
+        <td>Price: {{ stockinfo.price }}</td>
+     </tr>
+     <br><br>
+     <div style="display: flex; align-items: center; justify-content: center;">
+        <form action="/buy" method="POST">
+            <div class="mb-3" style="display: flex; align-items: center;">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="shares" name="shares" placeholder="Number of shares to buy" type="text">
+                <button class="btn btn-success" name="buybutton" type="submit" style="margin-left: 10px;">Buy now</button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div>
+        <tr>
+            <td>My account balance: {{ balance }}</td>
+        </tr>
+    </div>
+
+{% endblock %}

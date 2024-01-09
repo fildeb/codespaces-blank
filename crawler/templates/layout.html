@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles.css">
+    <title>{% block title %}Project{% endblock %}</title>
+    <!-- Additional head elements such as stylesheets and scripts go here -->
+</head>
+
+<body>
+
+    <div>
+        <header>
+            <h1>{% block header %}Welcome{% endblock %}</h1>
+            <!-- Navigation or other header content goes here -->
+        </header>
+
+        <div class="vertical-menu">
+            <a href="/" class="active">Home</a>
+            <a href="/register">Register</a>
+            <a href="/login">Log in</a>
+            <a href="#">Link 3</a>
+            <a href="#">Link 4</a>
+          </div>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>    
+
+</body>
+</html>

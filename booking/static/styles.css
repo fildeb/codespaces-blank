@@ -1,0 +1,174 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Color gradients for logo */
+nav .navbar-brand .blue1
+{
+    color: #0598ce;
+}
+nav .navbar-brand .blue2
+{
+    color: #0488b9;
+}
+nav .navbar-brand .blue3
+{
+    color: #0479a4;
+}
+nav .navbar-brand .blue4
+{
+    color: #036a90;
+}
+nav .navbar-brand .blue5
+{
+    color: #035b7b;
+}
+nav .navbar-brand .blue6
+{
+    color: #024c67;
+}
+nav .navbar-brand .blue7
+{
+    color: #023c52;
+}
+nav .navbar-brand .blue8
+{
+    color: #012d3d;
+}
+body {
+    background-color: #343541;
+    font-family: 'Montserrat', sans-serif;
+    align-items: center;
+    justify-content: center;
+}
+.title {
+    color: white;
+    font-size: 45px;
+    text-align: center;
+}
+.subtext {
+    color: white;
+    font-size: 25px;
+    text-align: center;
+}
+p {
+    margin: 0;
+    display: inline;
+   }
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+  }
+
+.calendar {
+    color: #0598ce;
+    font-size: 25px;
+    text-align: center;
+}
+.timetable {
+    color: white;
+    text-align: center;
+    font-size: 25px;
+}
+
+button {
+    border-radius: 4px;
+    background-color: #5ca1e1;
+    border: none;
+    color: #fff;
+    text-align: center;
+    font-size: 22px;
+    padding: 16px;
+    width: auto;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 16px;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+    display: inline-block;
+    position: relative;
+  }
+
+  button:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 14px;
+    right: 15px;
+    transition: 0.5s;
+  }
+
+  button:hover{
+    padding-right: 24px;
+    padding-left:8px;
+  }
+
+  button:hover:after {
+    opacity: 1;
+    right: 10px;
+  }
+
+.small_header {
+    text-align: center;
+    font-size: 50px;
+    padding-left: 520px;
+    padding-right: 520px;
+    color: white;
+}
+
+.calendar td:hover {
+    cursor: pointer;
+    color: #fff;
+    box-shadow: inset 200px 0 0 0 #54b3d6;;
+}
+
+.calendar {
+    box-shadow: inset 0 0 0 0 #54b3d6;
+    color: #54b3d6;
+    padding: 0 .25rem;
+    margin: 0 -.25rem;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+    color: #54b3d6;
+    font-family: 'Poppins', sans-serif;
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: none;
+  }
+
+  .centered-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.centered-table th, .centered-table td {
+    text-align: center;
+    padding: 8px;
+}
+
+.centered-table button {
+    width: 100%;
+}
+
+.description {
+    color: #fff; /* White text color */
+    text-align: center; /* Center-align text */
+    width: 20%; /* Adjust the width as per your design */
+    margin: 0 auto; /* Center the container horizontally */
+    position: absolute;
+    bottom: 20px; /* Adjust the distance from the bottom */
+    right: 50%; /* Adjust the distance from the right */
+    transform: translateX(50%); /* Center the container horizontally */
+    background: linear-gradient(0deg, slateblue, #5ca1e1) no-repeat right bottom / 0 var(--bg-h);
+    transition: background-size 350ms;
+    --bg-h: 100%;
+}
+
+.description:where(:hover, :focus-visible) {
+    background-size: 100% var(--bg-h);
+    background-position-x: left;
+  }
